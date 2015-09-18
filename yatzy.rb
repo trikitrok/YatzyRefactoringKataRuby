@@ -17,27 +17,11 @@ class Yatzy
   end
 
   def self.ones(*dies)
-    sum_dies(dies, 1)
+    compute_dies_score(dies, 1)
   end
 
-  def self.twos( d1,  d2,  d3,  d4,  d5)
-    sum = 0
-    if (d1 == 2)
-      sum += 2
-    end
-    if (d2 == 2)
-      sum += 2
-    end
-    if (d3 == 2)
-      sum += 2
-    end
-    if (d4 == 2)
-      sum += 2
-    end
-    if (d5 == 2)
-      sum += 2
-    end
-    return sum
+  def self.twos(*dies)
+    compute_dies_score(dies, 2)
   end
 
   def self.threes( d1,  d2,  d3,  d4,  d5)
@@ -232,7 +216,7 @@ class Yatzy
   end
 
   private
-  def self.sum_dies(dies, die_value)
-    dies.select {|die| die == die_value}.size
+  def self.compute_dies_score(dies, die_value)
+    die_value * dies.select {|die| die == die_value}.size
   end
 end
