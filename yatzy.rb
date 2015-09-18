@@ -24,24 +24,8 @@ class Yatzy
     compute_dies_score(dies, 2)
   end
 
-  def self.threes( d1,  d2,  d3,  d4,  d5)
-    s = 0
-    if (d1 == 3)
-      s += 3
-    end
-    if (d2 == 3)
-      s += 3
-    end
-    if (d3 == 3)
-      s += 3
-    end
-    if (d4 == 3)
-      s += 3
-    end
-    if (d5 == 3)
-      s += 3
-    end
-    return s
+  def self.threes(*dies)
+    compute_dies_score(dies, 3)
   end
 
   def initialize(d1, d2, d3, d4, _5)
