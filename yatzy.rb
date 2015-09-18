@@ -16,25 +16,8 @@ class Yatzy
     return 0
   end
 
-  def self.ones( d1,  d2,  d3,  d4,  d5)
-    sum = 0
-    if (d1 == 1)
-      sum += 1
-    end
-    if (d2 == 1)
-      sum += 1
-    end
-    if (d3 == 1)
-      sum += 1
-    end
-    if (d4 == 1)
-      sum += 1
-    end
-    if (d5 == 1)
-      sum += 1
-    end
-
-    sum
+  def self.ones(*dies)
+    sum_dies(dies, 1)
   end
 
   def self.twos( d1,  d2,  d3,  d4,  d5)
@@ -246,5 +229,10 @@ class Yatzy
     else
       return 0
     end
+  end
+
+  private
+  def self.sum_dies(dies, die_value)
+    dies.select {|die| die == die_value}.size
   end
 end
