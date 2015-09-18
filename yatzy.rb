@@ -40,8 +40,8 @@ class Yatzy
     compute_dies_score(dies, 5)
   end
 
-  def sixes
-    Yatzy.compute_dies_score(@dice, 6)
+  def self.sixes(*dies)
+    compute_dies_score(dies, 6)
   end
 
   def self.score_pair( d1,  d2,  d3,  d4,  d5)
