@@ -32,8 +32,8 @@ class Yatzy
     @dice = dies
   end
 
-  def fours
-    Yatzy.compute_dies_score(@dice, 4)
+  def self.fours(*dies)
+    compute_dies_score(dies, 4)
   end
 
   def fives
