@@ -41,10 +41,10 @@ class YatzyTest < Test::Unit::TestCase
     assert 4 == Yatzy.fours(4,5,5,5,5)
   end
 
-  def test_fives()
-    assert 10 == Yatzy.new(4,4,4,5,5).fives()
-    assert 15 == Yatzy.new(4,4,5,5,5).fives()
-    assert 20 == Yatzy.new(4,5,5,5,5).fives()
+  def test_fives
+    assert 10 == Yatzy.fives(4,4,4,5,5)
+    assert 15 == Yatzy.fives(4,4,5,5,5)
+    assert 20 == Yatzy.fives(4,5,5,5,5)
   end
 
   def test_sixes_test
