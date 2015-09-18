@@ -38,13 +38,7 @@ class Yatzy
   end
 
   def fours
-    sum = 0
-    for at in Array 0..4
-      if (@dice[at] == 4)
-        sum += 4
-      end
-    end
-    return sum
+    Yatzy.compute_dies_score(@dice, 4)
   end
 
   def fives()
