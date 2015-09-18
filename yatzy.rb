@@ -46,13 +46,7 @@ class Yatzy
   end
 
   def sixes
-    sum = 0
-    for at in 0..@dice.length
-      if (@dice[at] == 6)
-        sum = sum + 6
-      end
-    end
-    return sum
+    Yatzy.compute_dies_score(@dice, 6)
   end
 
   def self.score_pair( d1,  d2,  d3,  d4,  d5)
