@@ -4,7 +4,7 @@ class Yatzy
   end
 
   def self.yatzy *dies
-    return 50 if yatzy?(dies)
+    return 50 if all_equal?(dies)
     return 0
   end
 
@@ -114,7 +114,7 @@ class Yatzy
     end
   end
 
-  def self.yatzy? dies
+  def self.all_equal? dies
     first = dies.first
     dies.drop(1).all? {|die| die == first}
   end
