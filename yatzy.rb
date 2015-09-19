@@ -70,7 +70,8 @@ class Yatzy
 
   private
   def self.compute_score dies, die_value
-    die_value * dies.select {|die| die == die_value}.size
+    dies_with_value = dies.select {|die| die == die_value}
+    die_value * dies_with_value.size
   end
 
   def self.compute_frequencies dies
