@@ -9,27 +9,27 @@ class Yatzy
   end
 
   def self.ones *dies
-    compute_dies_score(dies, 1)
+    compute_score(dies, 1)
   end
 
   def self.twos *dies
-    compute_dies_score(dies, 2)
+    compute_score(dies, 2)
   end
 
   def self.threes *dies
-    compute_dies_score(dies, 3)
+    compute_score(dies, 3)
   end
 
   def self.fours *dies
-    compute_dies_score(dies, 4)
+    compute_score(dies, 4)
   end
 
   def self.fives *dies
-    compute_dies_score(dies, 5)
+    compute_score(dies, 5)
   end
 
   def self.sixes *dies
-    compute_dies_score(dies, 6)
+    compute_score(dies, 6)
   end
 
   def self.score_pair *dies
@@ -69,7 +69,7 @@ class Yatzy
   end
 
   private
-  def self.compute_dies_score dies, die_value
+  def self.compute_score dies, die_value
     die_value * dies.select {|die| die == die_value}.size
   end
 
