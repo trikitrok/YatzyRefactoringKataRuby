@@ -1,65 +1,65 @@
 class Yatzy
-  def self.chance(*dies)
+  def self.chance *dies
     dies.reduce(:+)
   end
 
-  def self.yatzy(dice)
-    return 50 if yatzy?(dice)
+  def self.yatzy *dies
+    return 50 if yatzy?(dies)
     return 0
   end
 
-  def self.ones(*dies)
+  def self.ones *dies
     compute_dies_score(dies, 1)
   end
 
-  def self.twos(*dies)
+  def self.twos *dies
     compute_dies_score(dies, 2)
   end
 
-  def self.threes(*dies)
+  def self.threes *dies
     compute_dies_score(dies, 3)
   end
 
-  def self.fours(*dies)
+  def self.fours *dies
     compute_dies_score(dies, 4)
   end
 
-  def self.fives(*dies)
+  def self.fives *dies
     compute_dies_score(dies, 5)
   end
 
-  def self.sixes(*dies)
+  def self.sixes *dies
     compute_dies_score(dies, 6)
   end
 
-  def self.score_pair(*dies)
+  def self.score_pair *dies
     score_group_of_a_kind(dies, 2)
   end
 
-  def self.two_pair(*dies)
+  def self.two_pair *dies
     pairs = extract_group(dies, 2)
     pairs.keys.reduce(:+) * 2
   end
 
-  def self.four_of_a_kind(*dies)
+  def self.four_of_a_kind *dies
     score_group_of_a_kind(dies, 4)
   end
 
-  def self.three_of_a_kind(*dies)
+  def self.three_of_a_kind *dies
     score_group_of_a_kind(dies, 3)
   end
 
-  def self.small_straight(*dies)
+  def self.small_straight *dies
     return 15 if small_straight?(dies)
     return 0
   end
 
-  def self.large_straight(*dies)
+  def self.large_straight *dies
     return 20 if large_traight?(dies)
     return 0
   end
 
-  def self.full_house(*dies)
+  def self.full_house *dies
     triplets = extract_group(dies, 3)
     pairs = extract_group(dies, 2)
 
@@ -69,7 +69,7 @@ class Yatzy
   end
 
   private
-  def self.compute_dies_score(dies, die_value)
+  def self.compute_dies_score dies, die_value
     die_value * dies.select {|die| die == die_value}.size
   end
 
