@@ -45,8 +45,7 @@ class Yatzy
   end
 
   def self.score_pair(*dies)
-    pairs = extract_group(dies, 2)
-    (pairs.keys.max || 0) * 2
+    group_of_a_kind(dies, 2)
   end
 
   def self.two_pair(*dies)
@@ -55,13 +54,11 @@ class Yatzy
   end
 
   def self.four_of_a_kind(*dies)
-    pairs = extract_group(dies, 4)
-    (pairs.keys.max || 0) * 4
+    group_of_a_kind(dies, 4)
   end
 
   def self.three_of_a_kind(*dies)
-    pairs = extract_group(dies, 3)
-    (pairs.keys.max || 0) * 3
+    group_of_a_kind(dies, 3)
   end
 
   def self.smallStraight( d1,  d2,  d3,  d4,  d5)
@@ -149,4 +146,8 @@ class Yatzy
     end
   end
 
+  def self.group_of_a_kind dies, group_size
+    pairs = extract_group(dies, group_size)
+    (pairs.keys.max || 0) * group_size
+  end
 end
