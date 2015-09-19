@@ -33,7 +33,7 @@ class Yatzy
   end
 
   def self.one_pair *dies
-    score_group_of_a_kind(dies, 2)
+    compute_group_of_a_kind_score(dies, 2)
   end
 
   def self.two_pairs *dies
@@ -42,11 +42,11 @@ class Yatzy
   end
 
   def self.four_of_a_kind *dies
-    score_group_of_a_kind(dies, 4)
+    compute_group_of_a_kind_score(dies, 4)
   end
 
   def self.three_of_a_kind *dies
-    score_group_of_a_kind(dies, 3)
+    compute_group_of_a_kind_score(dies, 3)
   end
 
   def self.small_straight *dies
@@ -90,7 +90,7 @@ class Yatzy
     end
   end
 
-  def self.score_group_of_a_kind dies, group_size
+  def self.compute_group_of_a_kind_score dies, group_size
     group = extract_group(dies, group_size)
     compute_group_score(group, group_size)
   end
