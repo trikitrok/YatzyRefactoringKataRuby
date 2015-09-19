@@ -77,7 +77,7 @@ class Yatzy
 
     return 0 if pairs.empty? || triplets.empty?
 
-    2 * pairs.keys.max + 3 * triplets.keys.max
+    compute_group_score(pairs, 2) + compute_group_score(triplets, 3)
   end
 
   private
@@ -104,6 +104,10 @@ class Yatzy
 
   def self.score_group_of_a_kind dies, group_size
     group = extract_group(dies, group_size)
+    compute_group_score(group, group_size)
+  end
+
+  def self.compute_group_score group, group_size
     (group.keys.max || 0) * group_size
   end
 
