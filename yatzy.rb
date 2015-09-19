@@ -4,15 +4,7 @@ class Yatzy
   end
 
   def self.yatzy(dice)
-    counts = [0]*(dice.length+1)
-    for die in dice do
-      counts[die-1] += 1
-    end
-    for i in 0..counts.size do
-      if counts[i] == 5
-        return 50
-      end
-    end
+    return 50 if yatzy?(dice)
     return 0
   end
 
@@ -123,5 +115,10 @@ class Yatzy
     frequencies.all? do |die, frequency|
       frequency == 1 && die != 1
     end
+  end
+
+  def self.yatzy? dies
+    first = dies.first
+    dies.drop(1).all? {|die| die == first}
   end
 end
