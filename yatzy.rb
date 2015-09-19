@@ -36,7 +36,7 @@ class Yatzy
     score_group_of_a_kind(dies, 2)
   end
 
-  def self.two_pair *dies
+  def self.two_pairs *dies
     pairs = extract_group(dies, 2)
     pairs.keys.reduce(:+) * 2
   end
