@@ -32,7 +32,7 @@ class Yatzy
     compute_score(dies, 6)
   end
 
-  def self.score_pair *dies
+  def self.one_pair *dies
     score_group_of_a_kind(dies, 2)
   end
 
