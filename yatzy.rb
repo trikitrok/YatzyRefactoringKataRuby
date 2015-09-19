@@ -75,13 +75,13 @@ class Yatzy
   end
 
   def self.compute_frequencies dies
-    dies.inject({}) do |acc, d|
-      if acc.include?(d)
-        acc[d] += 1
+    dies.inject({}) do |frequencies_so_far, d|
+      if frequencies_so_far.include?(d)
+        frequencies_so_far[d] += 1
       else
-        acc.merge!({d => 1})
+        frequencies_so_far.merge!({d => 1})
       end
-      acc
+      frequencies_so_far
     end
   end
 
