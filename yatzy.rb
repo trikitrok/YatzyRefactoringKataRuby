@@ -59,19 +59,9 @@ class Yatzy
     (pairs.keys.max || 0) * 4
   end
 
-  def self.three_of_a_kind( d1,  d2,  d3,  d4,  d5)
-    t = [0]*6
-    t[d1-1] += 1
-    t[d2-1] += 1
-    t[d3-1] += 1
-    t[d4-1] += 1
-    t[d5-1] += 1
-    for i in [0,1,2,3,4,5]
-      if (t[i] >= 3)
-        return (i+1) * 3
-      end
-    end
-    0
+  def self.three_of_a_kind(*dies)
+    pairs = extract_group(dies, 3)
+    (pairs.keys.max || 0) * 3
   end
 
   def self.smallStraight( d1,  d2,  d3,  d4,  d5)
