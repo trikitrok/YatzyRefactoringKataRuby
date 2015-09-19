@@ -20,10 +20,6 @@ class Yatzy
     compute_dies_score(dies, 3)
   end
 
-  def initialize(*dies)
-    @dice = dies
-  end
-
   def self.fours(*dies)
     compute_dies_score(dies, 4)
   end
