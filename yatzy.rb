@@ -44,20 +44,9 @@ class Yatzy
     compute_dies_score(dies, 6)
   end
 
-  def self.score_pair( d1,  d2,  d3,  d4,  d5)
-    counts = [0]*6
-    counts[d1-1] += 1
-    counts[d2-1] += 1
-    counts[d3-1] += 1
-    counts[d4-1] += 1
-    counts[d5-1] += 1
-    at = 0
-    (0...6).each do |at|
-      if (counts[6-at-1] >= 2)
-        return (6-at)*2
-      end
-    end
-    return 0
+  def self.score_pair(*dies)
+    pairs = extract_group(dies, 2)
+    (pairs.keys.max || 0) * 2
   end
 
   def self.two_pair( d1,  d2,  d3,  d4,  d5)
@@ -179,4 +168,22 @@ class Yatzy
   def self.compute_dies_score(dies, die_value)
     die_value * dies.select {|die| die == die_value}.size
   end
+
+  def self.frequencies dies
+    dies.inject({}) do |acc, d|
+      if acc.include?(d)
+        acc[d] += 1
+      else
+        acc.merge!({d => 1})
+      end
+      acc
+    end
+  end
+
+  def self.extract_group dies, group_size
+    frequencies(dies).select do |die, frequencie|
+      frequencie >= group_size
+    end
+  end
+
 end
