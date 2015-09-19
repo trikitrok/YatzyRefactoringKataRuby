@@ -66,16 +66,8 @@ class Yatzy
     return 0
   end
 
-  def self.largeStraight( d1,  d2,  d3,  d4,  d5)
-    tallies = [0]*6
-    tallies[d1-1] += 1
-    tallies[d2-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
-    if (tallies[1] == 1 and tallies[2] == 1 and tallies[3] == 1 and tallies[4] == 1 and tallies[5] == 1)
-      return 20
-    end
+  def self.largeStraight(*dies)
+    return 20 if large_traight?(dies)
     return 0
   end
 
@@ -120,7 +112,7 @@ class Yatzy
     die_value * dies.select {|die| die == die_value}.size
   end
 
-  def self.frequencies dies
+  def self.compute_frequencies dies
     dies.inject({}) do |acc, d|
       if acc.include?(d)
         acc[d] += 1
@@ -132,7 +124,7 @@ class Yatzy
   end
 
   def self.extract_group dies, group_size
-    frequencies(dies).select do |die, frequencie|
+    compute_frequencies(dies).select do |die, frequencie|
       frequencie >= group_size
     end
   end
@@ -143,8 +135,16 @@ class Yatzy
   end
 
   def self.small_straight? dies
-    frequencies(dies).all? do |die, frequency|
-      frequency == 1
+    frequencies = compute_frequencies(dies)
+    frequencies.all? do |die, frequency|
+      frequency == 1 && die != 6
+    end
+  end
+
+  def self.large_traight? dies
+    frequencies = compute_frequencies(dies)
+    frequencies.all? do |die, frequency|
+      frequency == 1 && die != 1
     end
   end
 end
