@@ -55,7 +55,7 @@ class Yatzy
   end
 
   def self.large_straight *dies
-    return 20 if large_traight?(dies)
+    return 20 if large_straight?(dies)
     return 0
   end
 
@@ -106,7 +106,7 @@ class Yatzy
     end
   end
 
-  def self.large_traight? dies
+  def self.large_straight? dies
     frequencies = compute_frequencies(dies)
     frequencies.all? do |die, frequency|
       frequency == 1 && die != 1
