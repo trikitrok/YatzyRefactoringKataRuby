@@ -71,40 +71,46 @@ class Yatzy
     return 0
   end
 
-  def self.fullHouse( d1,  d2,  d3,  d4,  d5)
-    tallies = []
-    _2 = false
-    i = 0
-    _2_at = 0
-    _3 = false
-    _3_at = 0
+  def self.fullHouse(*dies)
+    triplets = extract_group(dies, 3)
+    pairs = extract_group(dies, 2)
 
-    tallies = [0]*6
-    tallies[d1-1] += 1
-    tallies[d2-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
+    return 0 if pairs.empty? || triplets.empty?
 
-    for i in Array 0..5
-      if (tallies[i] == 2)
-        _2 = true
-        _2_at = i+1
-      end
-    end
+    2 * pairs.keys.max + 3 * triplets.keys.max
+    # tallies = []
+    # _2 = false
+    # i = 0
+    # _2_at = 0
+    # _3 = false
+    # _3_at = 0
 
-    for i in Array 0..5
-      if (tallies[i] == 3)
-        _3 = true
-        _3_at = i+1
-      end
-    end
+    # tallies = [0]*6
+    # tallies[d1-1] += 1
+    # tallies[d2-1] += 1
+    # tallies[d3-1] += 1
+    # tallies[d4-1] += 1
+    # tallies[d5-1] += 1
 
-    if (_2 and _3)
-      return _2_at * 2 + _3_at * 3
-    else
-      return 0
-    end
+    # for i in Array 0..5
+    #   if (tallies[i] == 2)
+    #     _2 = true
+    #     _2_at = i+1
+    #   end
+    # end
+
+    # for i in Array 0..5
+    #   if (tallies[i] == 3)
+    #     _3 = true
+    #     _3_at = i+1
+    #   end
+    # end
+
+    # if (_2 and _3)
+    #   return _2_at * 2 + _3_at * 3
+    # else
+    #   return 0
+    # end
   end
 
   private
