@@ -54,7 +54,7 @@ class Yatzy
     return 0
   end
 
-  def self.largeStraight(*dies)
+  def self.large_straight(*dies)
     return 20 if large_traight?(dies)
     return 0
   end
