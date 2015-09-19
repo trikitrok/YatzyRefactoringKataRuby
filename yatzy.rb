@@ -59,7 +59,7 @@ class Yatzy
     return 0
   end
 
-  def self.fullHouse(*dies)
+  def self.full_house(*dies)
     triplets = extract_group(dies, 3)
     pairs = extract_group(dies, 2)
 
