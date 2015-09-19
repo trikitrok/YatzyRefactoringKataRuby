@@ -61,18 +61,26 @@ class Yatzy
     group_of_a_kind(dies, 3)
   end
 
-  def self.smallStraight( d1,  d2,  d3,  d4,  d5)
-    tallies = [0]*6
-    tallies[d1-1] += 1
-    tallies[d2-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
-    (tallies[0] == 1 and
-      tallies[1] == 1 and
-      tallies[2] == 1 and
-      tallies[3] == 1 and
-      tallies[4] == 1) ? 15 : 0
+  def self.smallStraight(*dies)
+    is_small_straight = frequencies(dies).all? do |die, frequency|
+      frequency == 1
+    end
+
+    return 15 if is_small_straight
+
+    return 0
+
+    # tallies = [0]*6
+    # tallies[d1-1] += 1
+    # tallies[d2-1] += 1
+    # tallies[d3-1] += 1
+    # tallies[d4-1] += 1
+    # tallies[d5-1] += 1
+    # (tallies[0] == 1 and
+    #   tallies[1] == 1 and
+    #   tallies[2] == 1 and
+    #   tallies[3] == 1 and
+    #   tallies[4] == 1) ? 15 : 0
   end
 
   def self.largeStraight( d1,  d2,  d3,  d4,  d5)
