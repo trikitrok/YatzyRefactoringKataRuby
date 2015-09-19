@@ -49,7 +49,7 @@ class Yatzy
     score_group_of_a_kind(dies, 3)
   end
 
-  def self.smallStraight(*dies)
+  def self.small_straight(*dies)
     return 15 if small_straight?(dies)
     return 0
   end
