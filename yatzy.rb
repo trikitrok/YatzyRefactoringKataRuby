@@ -60,15 +60,8 @@ class Yatzy
   end
 
   def self.full_house *dies
-    triplets = extract_group(dies, 3)
-    pairs = extract_group(dies, 2)
-
-    return 0 if pairs.empty? || triplets.empty?
-
-    pairs_score = compute_group_score(pairs, 2)
-    triplets_score = compute_group_score(triplets, 3)
-
-    pairs_score + triplets_score
+    return 0 unless full_house?(dies)
+    compute_full_house_score(dies)
   end
 
   private
@@ -89,8 +82,8 @@ class Yatzy
   end
 
   def self.extract_group dies, group_size
-    compute_frequencies(dies).select do |die, frequencie|
-      frequencie >= group_size
+    compute_frequencies(dies).select do |die, frequency|
+      frequency >= group_size
     end
   end
 
@@ -119,5 +112,31 @@ class Yatzy
 
   def self.all_equal? dies
     dies.uniq.size == 1
+  end
+
+  def self.compute_full_house_score dies
+    pairs_score = compute_full_house_group(dies, 2)
+    triplets_score = compute_full_house_group(dies, 3)
+    pairs_score + triplets_score
+  end
+
+  def self.full_house? dies
+    triplets = extract_strict_group(dies, 3)
+    pairs = extract_strict_group(dies, 2)
+
+    only_one_pair = pairs.size == 1
+    only_one_triplet = triplets.size == 1
+    only_one_pair && only_one_triplet
+  end
+
+  def self.extract_strict_group dies, group_size
+    compute_frequencies(dies).select do |die, frequency|
+      frequency == group_size
+    end
+  end
+
+  def self.compute_full_house_group dies, group_size
+    group = extract_strict_group(dies, group_size)
+    compute_group_score(group, group_size)
   end
 end
