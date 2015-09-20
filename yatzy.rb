@@ -65,7 +65,10 @@ class Yatzy
 
     return 0 if pairs.empty? || triplets.empty?
 
-    compute_group_score(pairs, 2) + compute_group_score(triplets, 3)
+    pairs_score = compute_group_score(pairs, 2)
+    triplets_score = compute_group_score(triplets, 3)
+
+    pairs_score + triplets_score
   end
 
   private
