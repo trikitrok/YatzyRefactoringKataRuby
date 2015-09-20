@@ -139,9 +139,9 @@ class Yatzy
     compute_group_score(group, group_size)
   end
 
-  def self.extract_group dies, pred
+  def self.extract_group dies, predicate
     compute_frequencies(dies).select do |_, frequency|
-      pred.call(frequency)
+      predicate.call(frequency)
     end
   end
 end
