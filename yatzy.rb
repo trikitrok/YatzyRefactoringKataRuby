@@ -37,7 +37,7 @@ class Yatzy
   end
 
   def self.two_pairs *dies
-    pairs = extract_group_with_equal_or_larger_size(dies, 2)
+    pairs = extract_groups_with_equal_or_larger_size(dies, 2)
     pairs.keys.reduce(:+) * 2
   end
 
@@ -81,15 +81,15 @@ class Yatzy
     end
   end
 
-  def self.extract_group_with_equal_or_larger_size dies, group_size
-    extract_group(
+  def self.extract_groups_with_equal_or_larger_size dies, size
+    extract_groups(
       dies,
-      lambda { |frequency| frequency >= group_size }
+      lambda { |frequency| frequency >= size }
     )
   end
 
   def self.compute_group_of_a_kind_score dies, group_size
-    group = extract_group_with_equal_or_larger_size(dies, group_size)
+    group = extract_groups_with_equal_or_larger_size(dies, group_size)
     compute_group_score(group, group_size)
   end
 
@@ -122,24 +122,27 @@ class Yatzy
   end
 
   def self.full_house? dies
-    triplets = extract_group_with_equal_size(dies, 3)
-    pairs = extract_group_with_equal_size(dies, 2)
+    triplets = extract_groups_with_equal_size(dies, 3)
+    pairs = extract_groups_with_equal_size(dies, 2)
 
     only_one_pair = pairs.size == 1
     only_one_triplet = triplets.size == 1
     only_one_pair && only_one_triplet
   end
 
-  def self.extract_group_with_equal_size dies, group_size
-    extract_group(dies, lambda { |frequency| frequency == group_size })
+  def self.extract_groups_with_equal_size dies, size
+    extract_groups(
+      dies,
+      lambda { |frequency| frequency == size }
+    )
   end
 
   def self.compute_full_house_group dies, group_size
-    group = extract_group_with_equal_size(dies, group_size)
+    group = extract_groups_with_equal_size(dies, group_size)
     compute_group_score(group, group_size)
   end
 
-  def self.extract_group dies, predicate
+  def self.extract_groups dies, predicate
     compute_frequencies(dies).select do |_, frequency|
       predicate.call(frequency)
     end
