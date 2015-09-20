@@ -115,7 +115,6 @@ class Yatzy
   end
 
   def self.all_equal? dies
-    first = dies.first
-    dies.drop(1).all? {|die| die == first}
+    dies.uniq.size == 1
   end
 end
